@@ -238,8 +238,8 @@ export const provideHass = (
       default_theme: "default",
       default_dark_theme: null,
       themes: {},
-      darkMode: false,
-      theme: "default",
+      darkMode: true,
+      theme: "eDashboard",
     },
     panels: demoPanels,
     services: demoServices,
@@ -249,7 +249,7 @@ export const provideHass = (
       is_admin: true,
       is_owner: true,
       mfa_modules: [],
-      name: "Demo User",
+      name: "Frontdesk User",
     },
     panelUrl: "lovelace",
     defaultPanel: DEFAULT_PANEL,
@@ -328,11 +328,11 @@ export const provideHass = (
     mockTheme(theme) {
       invalidateThemeCache();
       hass().updateHass({
-        selectedTheme: { theme: theme ? "mock" : "default" },
+        selectedTheme: { theme: theme ? "eDashboard" : "default" },
         themes: {
           ...hass().themes,
           themes: {
-            mock: theme as any,
+            eDashboard: theme as any,
           },
         },
       });

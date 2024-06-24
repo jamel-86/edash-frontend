@@ -1,7 +1,7 @@
 <meta property="fb:app_id" content="338291289691179" />
 <meta property="og:title" content="eDashboard Demo" />
 <meta property="og:site_name" content="eDashboard" />
-<meta property="og:url" content="https://demo.home-assistant.io/" />
+<meta property="og:url" content="https://eedashboard.netlify.app/" />
 <meta property="og:type" content="website" />
 <meta
   property="og:description"
@@ -9,11 +9,11 @@
 />
 <meta
   property="og:image"
-  content="https://www.home-assistant.io/images/default-social.png"
+  content="/static/icons/tile-win-310x310.png"
 />
 
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:site" content="@home_assistant" />
+<meta name="twitter:site" content="@eelectron" />
 
 <meta name="twitter:title" content="eDashboard" />
 <meta
@@ -22,5 +22,5 @@
 />
 <meta
   name="twitter:image"
-  content="https://www.home-assistant.io/images/default-social.png"
+  content="/static/icons/tile-win-310x310.png"
 />

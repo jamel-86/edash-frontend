@@ -5,44 +5,17 @@ export const demoLovelaceSections: DemoConfig["lovelace"] = () => ({
   views: [
     {
       type: "sections",
-      title: "Demo",
+      title: "Hotel Rooms",
       path: "home",
       icon: "mdi:home-assistant",
       sections: [
         {
-          title: "Welcome 👋",
-          cards: [{ type: "custom:ha-demo-card" }],
-        },
-        {
+          title: "🔑 Room 1010",
           cards: [
             {
               type: "tile",
-              entity: "cover.living_room_garden_shutter",
-              name: "Garden",
-            },
-            {
-              type: "tile",
-              entity: "cover.living_room_graveyard_shutter",
-              name: "Rear",
-            },
-            {
-              type: "tile",
-              entity: "cover.living_room_left_shutter",
-              name: "Left",
-            },
-            {
-              type: "tile",
-              entity: "cover.living_room_right_shutter",
-              name: "Right",
-            },
-            {
-              type: "tile",
-              entity: "light.floor_lamp",
-            },
-            {
-              type: "tile",
-              entity: "light.living_room_spotlights",
-              name: "Spotlights",
+              entity: "light.1010_bedroom_lights",
+              name: "Bedroom Lights",
               features: [
                 {
                   type: "light-brightness",
@@ -51,35 +24,52 @@ export const demoLovelaceSections: DemoConfig["lovelace"] = () => ({
             },
             {
               type: "tile",
-              entity: "light.bar_lamp",
+              entity: "light.1010_left_reading_light",
+              name: "Left Reading Light",
+            },
+            {
+              type: "tile",
+              entity: "light.1010_right_reading_light",
+              name: "Right Reading Light",
+            },
+            {
+              features: [
+                {
+                  type: "target-temperature",
+                },
+              ],
+              type: "tile",
+              name: "Thermostat",
+              entity: "climate.1010",
+              state_content: ["preset_mode", "current_temperature"],
             },
             {
               graph: "line",
-              type: "sensor",
-              entity: "sensor.living_room_temperature",
               detail: 1,
-              name: "Temperature",
+              hours_to_show: 24,
+              type: "sensor",
+              entity: "sensor.1010_room_temperature",
+              name: "Room Temperature",
             },
             {
               type: "tile",
-              entity: "media_player.living_room_nest_mini",
-              name: "Nest Mini",
+              entity: "cover.1010_blackout",
+              name: "Blackout",
+            },
+            {
+              type: "tile",
+              entity: "binary_sensor.1010_guest_in_room",
+              name: "Occupancy",
             },
           ],
-          title: "🛋️ Living room ",
         },
         {
-          type: "grid",
+          title: "🔑 Room 1011",
           cards: [
             {
               type: "tile",
-              entity: "cover.kitchen_shutter",
-              name: "Shutter",
-            },
-            {
-              type: "tile",
-              entity: "light.kitchen_spotlights",
-              name: "Spotlights",
+              entity: "light.1011_bedroom_lights",
+              name: "Bedroom Lights",
               features: [
                 {
                   type: "light-brightness",
@@ -88,75 +78,13 @@ export const demoLovelaceSections: DemoConfig["lovelace"] = () => ({
             },
             {
               type: "tile",
-              entity: "light.worktop_spotlights",
-              name: "Worktop",
+              entity: "light.1011_left_reading_light",
+              name: "Left Reading Light",
             },
             {
               type: "tile",
-              entity: "binary_sensor.fridge_door",
-              name: "Fridge",
-            },
-            {
-              type: "tile",
-              entity: "media_player.kitchen_nest_audio",
-              name: "Nest Audio",
-            },
-          ],
-          title: "👩‍🍳 Kitchen",
-        },
-        {
-          type: "grid",
-          cards: [
-            {
-              type: "tile",
-              entity: "binary_sensor.tesla_wall_connector_vehicle_connected",
-              name: "EV",
-              icon: "mdi:car",
-            },
-            {
-              type: "tile",
-              entity: "sensor.tesla_wall_connector_session_energy",
-              name: "Last charge",
-              color: "green",
-            },
-            {
-              type: "tile",
-              entity: "sensor.electric_meter_power",
-              color: "deep-orange",
-              name: "Home power",
-            },
-            {
-              type: "tile",
-              entity: "sensor.eletric_meter_voltage",
-              name: "Voltage",
-              color: "deep-orange",
-            },
-            {
-              type: "tile",
-              entity: "sensor.electricity_maps_grid_fossil_fuel_percentage",
-              name: "Fossil fuel",
-              color: "brown",
-            },
-            {
-              type: "tile",
-              entity: "sensor.electricity_maps_co2_intensity",
-              name: "CO2 Intensity",
-              color: "dark-grey",
-            },
-          ],
-          title: "⚡️ Energy",
-        },
-        {
-          type: "grid",
-          cards: [
-            {
-              type: "tile",
-              entity: "sun.sun",
-            },
-            {
-              type: "tile",
-              entity: "sensor.rain",
-              color: "blue",
+              entity: "light.1011_right_reading_light",
+              name: "Right Reading Light",
             },
             {
               features: [
@@ -165,115 +93,353 @@ export const demoLovelaceSections: DemoConfig["lovelace"] = () => ({
                 },
               ],
               type: "tile",
-              name: "Downstairs",
-              entity: "climate.ground_floor",
+              name: "Thermostat",
+              entity: "climate.1011",
               state_content: ["preset_mode", "current_temperature"],
             },
             {
-              features: [
-                {
-                  type: "target-temperature",
-                },
-              ],
-              type: "tile",
-              name: "Upstairs",
-              entity: "climate.first_floor",
-              state_content: ["preset_mode", "current_temperature"],
-            },
-          ],
-          title: "🌤️ Climate",
-        },
-        {
-          type: "grid",
-          cards: [
-            {
-              type: "tile",
-              entity: "cover.study_shutter",
-              name: "Shutter",
-            },
-            {
-              type: "tile",
-              entity: "light.study_spotlights",
-              name: "Spotlights",
-            },
-            {
-              type: "tile",
-              entity: "media_player.study_nest_hub",
-              name: "Nest Hub",
-            },
-            {
-              type: "tile",
-              entity: "sensor.standing_desk_height",
-              name: "Desk",
-              color: "brown",
-              icon: "mdi:desk",
-            },
-          ],
-          title: "🧑‍💻 Study",
-        },
-        {
-          type: "grid",
-          cards: [
-            {
-              type: "tile",
-              entity: "light.outdoor_light",
-              name: "Door light",
-            },
-            {
-              type: "tile",
-              entity: "light.flood_light",
-            },
-            {
-              graph: "line",
               type: "sensor",
-              entity: "sensor.outdoor_motion_sensor_temperature",
+              graph: "line",
               detail: 1,
-              name: "Temperature",
+              hours_to_show: 24,
+              entity: "sensor.1011_room_temperature",
+              name: "Room Temperature",
             },
             {
               type: "tile",
-              entity: "binary_sensor.outdoor_motion_sensor_motion",
-              name: "Motion",
-              color: "blue",
+              entity: "cover.1011_blackout",
+              name: "Blackout",
             },
             {
               type: "tile",
-              entity: "sensor.outdoor_motion_sensor_illuminance",
-              color: "amber",
-              name: "Illuminance",
+              entity: "binary_sensor.1011_guest_in_room",
+              name: "Occupancy",
             },
           ],
-          title: "🌳 Outdoor",
         },
         {
-          type: "grid",
+          title: "🔑 Room 1012",
           cards: [
             {
               type: "tile",
-              entity: "automation.home_assistant_auto_update",
-              name: "Auto-update",
-              color: "green",
+              entity: "light.1012_bedroom_lights",
+              name: "Bedroom Lights",
+              features: [
+                {
+                  type: "light-brightness",
+                },
+              ],
             },
             {
               type: "tile",
-              entity: "update.home_assistant_operating_system_update",
-              name: "OS",
-              icon: "mdi:home-assistant",
+              entity: "light.1012_left_reading_light",
+              name: "Left Reading Light",
             },
             {
               type: "tile",
-              entity: "update.home_assistant_supervisor_update",
-              icon: "mdi:home-assistant",
-              name: "Supervisor",
+              entity: "light.1012_right_reading_light",
+              name: "Right Reading Light",
+            },
+            {
+              features: [
+                {
+                  type: "target-temperature",
+                },
+              ],
+              type: "tile",
+              name: "Thermostat",
+              entity: "climate.1012",
+              state_content: ["preset_mode", "current_temperature"],
+            },
+            {
+              type: "sensor",
+              graph: "line",
+              detail: 1,
+              hours_to_show: 24,
+              entity: "sensor.1012_room_temperature",
+              name: "Room Temperature",
             },
             {
               type: "tile",
-              entity: "update.home_assistant_core_update",
-              name: "Core",
-              icon: "mdi:home-assistant",
+              entity: "cover.1012_blackout",
+              name: "Blackout",
+            },
+            {
+              type: "tile",
+              entity: "binary_sensor.1012_guest_in_room",
+              name: "Occupancy",
             },
           ],
-          title: "🎉 Updates",
+        },
+        {
+          title: "🔑 Room 1013",
+          cards: [
+            {
+              type: "tile",
+              entity: "light.1013_bedroom_lights",
+              name: "Bedroom Lights",
+              features: [
+                {
+                  type: "light-brightness",
+                },
+              ],
+            },
+            {
+              type: "tile",
+              entity: "light.1013_left_reading_light",
+              name: "Left Reading Light",
+            },
+            {
+              type: "tile",
+              entity: "light.1013_right_reading_light",
+              name: "Right Reading Light",
+            },
+            {
+              features: [
+                {
+                  type: "target-temperature",
+                },
+              ],
+              type: "tile",
+              name: "Thermostat",
+              entity: "climate.1013",
+              state_content: ["preset_mode", "current_temperature"],
+            },
+            {
+              type: "sensor",
+              graph: "line",
+              detail: 1,
+              hours_to_show: 24,
+              entity: "sensor.1013_room_temperature",
+              name: "Room Temperature",
+            },
+            {
+              type: "tile",
+              entity: "cover.1013_blackout",
+              name: "Blackout",
+            },
+            {
+              type: "tile",
+              entity: "binary_sensor.1013_guest_in_room",
+              name: "Occupancy",
+            },
+          ],
+        },
+        {
+          title: "🔑 Room 1014",
+          cards: [
+            {
+              type: "tile",
+              entity: "light.1014_bedroom_lights",
+              name: "Bedroom Lights",
+              features: [
+                {
+                  type: "light-brightness",
+                },
+              ],
+            },
+            {
+              type: "tile",
+              entity: "light.1014_left_reading_light",
+              name: "Left Reading Light",
+            },
+            {
+              type: "tile",
+              entity: "light.1014_right_reading_light",
+              name: "Right Reading Light",
+            },
+            {
+              features: [
+                {
+                  type: "target-temperature",
+                },
+              ],
+              type: "tile",
+              name: "Thermostat",
+              entity: "climate.1014",
+              state_content: ["preset_mode", "current_temperature"],
+            },
+            {
+              type: "sensor",
+              graph: "line",
+              detail: 1,
+              hours_to_show: 24,
+              entity: "sensor.1014_room_temperature",
+              name: "Room Temperature",
+            },
+            {
+              type: "tile",
+              entity: "cover.1014_blackout",
+              name: "Blackout",
+            },
+            {
+              type: "tile",
+              entity: "binary_sensor.1014_guest_in_room",
+              name: "Occupancy",
+            },
+          ],
+        },
+        {
+          title: "🔑 Room 1015",
+          cards: [
+            {
+              type: "tile",
+              entity: "light.1015_bedroom_lights",
+              name: "Bedroom Lights",
+              features: [
+                {
+                  type: "light-brightness",
+                },
+              ],
+            },
+            {
+              type: "tile",
+              entity: "light.1015_left_reading_light",
+              name: "Left Reading Light",
+            },
+            {
+              type: "tile",
+              entity: "light.1015_right_reading_light",
+              name: "Right Reading Light",
+            },
+            {
+              features: [
+                {
+                  type: "target-temperature",
+                },
+              ],
+              type: "tile",
+              name: "Thermostat",
+              entity: "climate.1015",
+              state_content: ["preset_mode", "current_temperature"],
+            },
+            {
+              type: "sensor",
+              graph: "line",
+              detail: 1,
+              hours_to_show: 24,
+              entity: "sensor.1015_room_temperature",
+              name: "Room Temperature",
+            },
+            {
+              type: "tile",
+              entity: "cover.1015_blackout",
+              name: "Blackout",
+            },
+            {
+              type: "tile",
+              entity: "binary_sensor.1015_guest_in_room",
+              name: "Occupancy",
+            },
+          ],
+        },
+        {
+          title: "🔑 Room 1016",
+          cards: [
+            {
+              type: "tile",
+              entity: "light.1016_bedroom_lights",
+              name: "Bedroom Lights",
+              features: [
+                {
+                  type: "light-brightness",
+                },
+              ],
+            },
+            {
+              type: "tile",
+              entity: "light.1016_left_reading_light",
+              name: "Left Reading Light",
+            },
+            {
+              type: "tile",
+              entity: "light.1016_right_reading_light",
+              name: "Right Reading Light",
+            },
+            {
+              features: [
+                {
+                  type: "target-temperature",
+                },
+              ],
+              type: "tile",
+              name: "Thermostat",
+              entity: "climate.1016",
+              state_content: ["preset_mode", "current_temperature"],
+            },
+            {
+              type: "sensor",
+              graph: "line",
+              detail: 1,
+              hours_to_show: 24,
+              entity: "sensor.1016_room_temperature",
+              name: "Room Temperature",
+            },
+            {
+              type: "tile",
+              entity: "cover.1016_blackout",
+              name: "Blackout",
+            },
+            {
+              type: "tile",
+              entity: "binary_sensor.1016_guest_in_room",
+              name: "Occupancy",
+            },
+          ],
+        },
+        {
+          title: "🔑 Room 1017",
+          cards: [
+            {
+              type: "tile",
+              entity: "light.1017_bedroom_lights",
+              name: "Bedroom Lights",
+              features: [
+                {
+                  type: "light-brightness",
+                },
+              ],
+            },
+            {
+              type: "tile",
+              entity: "light.1017_left_reading_light",
+              name: "Left Reading Light",
+            },
+            {
+              type: "tile",
+              entity: "light.1017_right_reading_light",
+              name: "Right Reading Light",
+            },
+            {
+              features: [
+                {
+                  type: "target-temperature",
+                },
+              ],
+              type: "tile",
+              name: "Thermostat",
+              entity: "climate.1017",
+              state_content: ["preset_mode", "current_temperature"],
+            },
+            {
+              type: "sensor",
+              graph: "line",
+              detail: 1,
+              hours_to_show: 24,
+              entity: "sensor.1017_room_temperature",
+              name: "Room Temperature",
+            },
+            {
+              type: "tile",
+              entity: "cover.1017_blackout",
+              name: "Blackout",
+            },
+            {
+              type: "tile",
+              entity: "binary_sensor.1017_guest_in_room",
+              name: "Occupancy",
+            },
+          ],
         },
       ],
     },
