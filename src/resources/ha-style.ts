@@ -12,7 +12,7 @@ const mainStyles = css`
 
     In Polymer 2.0, default styles should to be set on the html selector.
     (Setting all default styles only on body breaks shadyCSS polyfill.)
-    See: https://github.com/home-assistant/home-assistant-polymer/pull/901
+    See: https://github.com/jamel-86s/edash-frontend/pull/901
   */
   html {
     font-size: 14px;
@@ -436,10 +436,10 @@ const mainStyles = css`
     --margin-title-rtl: 0 24px 0 0;
 
     ${unsafeCSS(
-      Object.entries(derivedStyles)
-        .map(([key, value]) => `--${key}: ${value};`)
-        .join("")
-    )}
+  Object.entries(derivedStyles)
+    .map(([key, value]) => `--${key}: ${value};`)
+    .join("")
+)}
   }
 `.toString();
 
