@@ -4,8 +4,8 @@
     "type": "git",
     "url": "https://github.com/jamel-86/edash-frontend"
   },
-  "name": "edashboard-frontend",
-  "version": "1.0.0",
+  "name": "edash-frontend",
+  "version": "20240711.01",
   "scripts": {
     "build": "script/build_frontend",
     "lint:eslint": "eslint \"**/src/**/*.{js,ts,html}\" --cache --cache-strategy=content --cache-location=node_modules/.cache/eslint/.eslintcache --ignore-path=.gitignore",
@@ -21,7 +21,7 @@
     "postpack": "pinst --enable",
     "test": "instant-mocha --webpack-config ./test/webpack.config.js --require ./test/setup.cjs \"test/**/*.ts\""
   },
-  "author": "Paulus Schoutsen <Paulus@PaulusSchoutsen.nl> (http://paulusschoutsen.nl)",
+  "author": "Jamel Nacef",
   "license": "Apache-2.0",
   "type": "module",
   "dependencies": {
