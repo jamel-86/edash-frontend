@@ -3,18 +3,18 @@ requires = ["setuptools~=68.0", "wheel~=0.40.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name         = "home-assistant-frontend"
-version      = "20240610.0"
+name         = "edash-frontend"
+version      = "20240711.0"
 license      = {text = "Apache-2.0"}
 description  = "The eDashboard frontend"
 readme       = "README.md"
 authors      = [
-    {name = "The eDashboard Authors", email = "hello@home-assistant.io"}
+    {name = "The eDashboard Authors", email = "jamel.nacef@gmail.com"}
 ]
 requires-python = ">=3.11.0"
 
 [project.urls]
-"Homepage" = "https://github.com/home-assistant/frontend"
+"Homepage" = "https://github.com/jamel-86/edash-frontend"
 
 [tool.setuptools]
 platforms = ["any"]
