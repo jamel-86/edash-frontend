@@ -6831,14 +6831,14 @@
         }
       },
       "page-onboarding": {
-        "intro": "Are you ready to awaken your home, reclaim your privacy and join a worldwide community of tinkerers?",
+        "intro": "Follow the wizard to create your admin account and project. Remember to use a safe and strong password, and do not forget it!",
         "back": "Back",
         "next": "Next",
         "finish": "Finish",
         "help": "Help",
         "welcome": {
-          "header": "Welcome!",
-          "start": "Create my smart home",
+          "header": "eMachine Wizard",
+          "start": "Create my project",
           "restore_backup": "Restore from backup",
           "vision": "Read our vision",
           "community": "Join our community",

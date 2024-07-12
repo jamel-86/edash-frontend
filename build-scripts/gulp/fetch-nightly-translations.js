@@ -1,15 +1,16 @@
-// Task to download the latest Lokalise translations from the nightly workflow artifacts
-
 import { createOAuthDeviceAuth } from "@octokit/auth-oauth-device";
 import { retry } from "@octokit/plugin-retry";
 import { Octokit } from "@octokit/rest";
 import { deleteAsync } from "del";
-import { mkdir, readFile, writeFile } from "fs/promises";
+import { mkdir, readFile, writeFile, copyFile, readdir } from "fs/promises";
 import gulp from "gulp";
 import jszip from "jszip";
 import path from "path";
 import process from "process";
 import { extract } from "tar";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const MAX_AGE = 24; // hours
 const OWNER = "home-assistant";
@@ -21,16 +22,56 @@ const EXTRACT_DIR = "translations";
 const TOKEN_FILE = path.posix.join(EXTRACT_DIR, "token.json");
 const ARTIFACT_FILE = path.posix.join(EXTRACT_DIR, "artifact.json");
 
+const localTranslationsPath = "/home/jamel/hass/translations"; // Path where your translations are stored
+
 let allowTokenSetup = false;
+
 gulp.task("allow-setup-fetch-nightly-translations", (done) => {
   allowTokenSetup = true;
   done();
 });
 
+async function copyDirectory(src, dest) {
+  await mkdir(dest, { recursive: true });
+  const entries = await readdir(src, { withFileTypes: true });
+  const copyPromises = entries.map(async (entry) => {
+    const srcPath = path.join(src, entry.name);
+    const destPath = path.join(dest, entry.name);
+    if (entry.isDirectory()) {
+      await copyDirectory(srcPath, destPath);
+    } else {
+      await copyFile(srcPath, destPath);
+    }
+  });
+  await Promise.all(copyPromises);
+}
+
 gulp.task("fetch-nightly-translations", async function () {
   // Skip all when environment flag is set (assumes translations are already in place)
-  if (process.env?.SKIP_FETCH_NIGHTLY_TRANSLATIONS) {
+  if (process.env.SKIP_FETCH_NIGHTLY_TRANSLATIONS === "true") {
     console.log("Skipping fetch due to environment signal");
+
+    // Copy local translations to the appropriate directories
+    await Promise.all([
+      mkdir(`${EXTRACT_DIR}/frontend`, { recursive: true }),
+      mkdir(`${EXTRACT_DIR}/backend`, { recursive: true }),
+      copyDirectory(
+        `${localTranslationsPath}/frontend`,
+        `${EXTRACT_DIR}/frontend`
+      ),
+      copyDirectory(
+        `${localTranslationsPath}/backend`,
+        `${EXTRACT_DIR}/backend`
+      ),
+    ]);
+
+    // Update artifact file with a dummy timestamp to avoid re-fetching
+    const latestArtifact = {
+      created_at: new Date().toISOString(),
+      id: 1,
+    };
+    await writeFile(ARTIFACT_FILE, JSON.stringify(latestArtifact, null, 2));
+
     return;
   }
 
@@ -66,7 +107,7 @@ gulp.task("fetch-nightly-translations", async function () {
       tokenAuth = JSON.parse(await readFile(TOKEN_FILE, "utf-8"));
     } catch {
       if (!allowTokenSetup) {
-        console.log("No token found so  build wil continue with English only");
+        console.log("No token found so build will continue with English only");
         return;
       }
       const auth = createOAuthDeviceAuth({
@@ -169,3 +210,6 @@ gulp.task(
     "fetch-nightly-translations"
   )
 );
+
+// Default task
+gulp.task("default", gulp.series("setup-and-fetch-nightly-translations"));
